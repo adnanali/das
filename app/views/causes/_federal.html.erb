@@ -1,0 +1,42 @@
+<% form_tag( {:action => "something"}, :id => "postal_form") do -%>
+    <div id="enter">
+        <h1>Contact Your MP</h1>
+        <p>Enter your postal code:</p>
+        <%= text_field_tag :find_postal_code %>
+        <%= submit_tag "Find your MP", :id => "find_mp" %>
+        <div class="sxn">
+          <%= @find_form_message %>
+        </div>
+    </div>
+<% end -%>
+<div id="member_results">
+    <!-- ajax outputs mp's info here -->
+</div>
+
+        <script type="text/javascript">
+        $("#find_mp").click (function(){
+            $("#mp").html("<p class='msg'><em>Loading &hellip;</em></p>");
+            $.get("/ajax/findmp.php?postal_code=" + $("#postal_code_mp").val(), {}, function(data) {
+                $("#mp").html(data);
+                $("#info").slideToggle();
+
+                if ($("#name").html() != null) {
+                        $("#write_to").html("Write to " + $("#name").html() + " now");
+                        $("#form_postal_code").html($("#postal_code_mp").val());
+                        $("#form_province").html($("#mp_province").val());
+                        $("#form_city").val($("#mp_city").val());
+                        $("#letter_form").hide();
+                        $("#letter_preview").hide();
+                        $("#letter_form").slideToggle();
+                        $("#letter_form").scrollTo(1000);
+
+                        if ($("#mp_province").val() == "") {
+                                $("#form_province_select").show();
+                                $("#form_province").hide();
+                        }
+                }
+            });
+            return false;
+        });
+    </script>
+

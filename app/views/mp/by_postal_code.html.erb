@@ -1,0 +1,33 @@
+<div id="mp">
+  <h2 id="mp_name"><%= @mp.name %></h2>
+  <div style="display: block;" id="info">
+    <div id="mpinfo">
+      <p><em>Riding</em>: <%= @mp.riding %></p>
+      <p><em>Party</em>: <%= @mp.party %></p>
+    </div>
+    <div id="mpcontact">
+      <p class="clear"><strong>Phone</strong> 
+      <span><%= @mp.local_address['telephone']%></span></p>
+      <% if @mp.local_address['fax'] != "" %>
+      <p class="clear"><strong>Fax</strong> 
+      <span><%= @mp.local_address['fax']%></span></p>
+      <% end %>
+      <p class="clear"><strong>Email</strong> 
+        <a href="mailto:<%= @mp.email %>" title="Email your MP now."><%= @mp.email %></a>
+      </p>
+      <% if @mp.local_address['email'] != "" %>
+      <p class="clear"><strong> </strong> 
+        <a href="mailto:<%= @mp.local_address['email'] %>" title="Email your MP now."><%= @mp.local_address['email'] %></a>
+      </p>
+      <% end %>
+      <p class="clear"><strong>Address</strong>
+        <span id="address">
+          <%= @mp.local_address['address'].gsub("\n", "<br />\n") %>
+        </span>
+      </p>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  var mp_info = <%= @mp.clean_attributes.to_json %>
+</script>

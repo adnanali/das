@@ -1,0 +1,20 @@
+<h1>Listing tests</h1>
+
+<table>
+  <tr>
+    <th>New</th>
+  </tr>
+
+<% for test in @tests %>
+  <tr>
+    <td><%=h test.new %></td>
+    <td><%= link_to 'Show', test %></td>
+    <td><%= link_to 'Edit', edit_test_path(test) %></td>
+    <td><%= link_to 'Destroy', test, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New test', new_test_path %>

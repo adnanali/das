@@ -1,0 +1,267 @@
+/*
+	http://www.demandastance.com/gaza/
+	Jan 2009
+*/
+
+* {
+	margin: 0;
+	padding: 0;
+	}
+.clear:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+	}
+
+body {
+	font: normal .9em Arial, Helvetica, Verdana, sans-serif;
+	color: #FFF;
+	background: #222;
+	margin: 40px 80px;
+	}
+
+/* TEXTING
+_______________________________________________ */
+p {
+	line-height: 1.2em;
+	margin-bottom: 0.3em;
+	}
+h1 {
+	font: bold 2em/0.9em "HelveticaNeue Condensed", Arial, Helvetica, sans-serif;
+	text-transform: uppercase;
+	margin-bottom: 0.3em;
+	}
+a {
+	text-decoration: none;
+	color: #39C;
+	}
+	a:hover {
+		color:#FC3;
+		}
+input {
+	font-family: Arial, Helvetica, sans-serif;
+	}
+
+/* BOXES
+_______________________________________________ */
+#intro {
+	width: 460px;
+	float: left;
+	margin: 0 0 40px;
+	}
+#postal_form {
+	float: left;
+	width: 370px;
+	margin: 0 0 30px 40px;
+	}
+#letter_form {
+	width: 550px;
+	position: absolute;
+	top: 40px;
+	left: 1020px;
+	border: 1px solid #222;
+	border-right: 50px solid #222;
+	}
+#letter_preview {
+	width: 550px;
+	position: absolute;
+	top: 40px;
+	left: 1020px;
+	border: 50px solid #222;
+	border-width: 0 50px 50px 0;
+	}
+
+/* #intro
+#empty {
+	width: 200px;
+	position: absolute;
+	left: 1570px;
+	}
+_______________________________________________ */
+#intro p {
+	font-size: 1.1em;
+	line-height: 1.4em;
+	}
+
+/* #postal_form
+_______________________________________________ */
+#enter {
+	background: #111 url(../img/cornersbot.gif) no-repeat bottom left;
+	padding-bottom: 20px;
+	}
+	#postal_form h1 {
+		background: url(../img/cornerstop.gif) no-repeat top left;
+		font: bold 2.5em "HelveticaNeue Condensed", Arial, Helvetica, sans-serif;
+		padding: 20px 0 0 30px;
+		}
+		#enter p {
+			font-weight: bold;
+			font-size: 1.1em;
+			padding-left: 30px;
+			}
+		#find_postal_code {
+			padding: 0.1em;
+			width: 5em;
+			font-weight: bold;
+			font-size: 1.2em;
+			text-transform: uppercase;
+			margin-left: 30px;
+			}
+		#find_mp {
+			font-weight: bold;
+			padding: 0.1em;
+			}
+		#postal_form #enter .sxn {
+			font-size: 0.8em;
+			font-weight: normal;
+			margin-top: 0.5em;
+			padding-right: 20px;
+			}
+#mp {
+	background: #111 url(../img/cornersbot.gif) no-repeat bottom left;
+	margin-top: 1em;
+	}
+	#mp .msg {
+		background: url(../img/cornerstop.gif) no-repeat top left;
+		padding: 10px 30px;
+		}
+		#mp .msg em,
+		.loading {
+			background: url(../img/loading.gif) no-repeat center left;
+			padding-left: 30px;
+			}
+	#mp h2 {
+		font: bold 2em "HelveticaNeue Condensed", Arial, Helvetica, sans-serif;
+		background: url(../img/cornerstop.gif) no-repeat top left;
+		padding: 20px 0 0 30px;
+		}
+	#mp #info  {
+		padding-left: 30px;
+		}
+		#mp #mpinfo {
+			font-size: 0.8em;
+			}
+			#mpinfo p {
+				line-height: 1em;
+				}
+		#mp #mpcontact {
+			padding-top: 0.3em;
+			}
+			#mpcontact p {
+				font-size: 1.1em;
+				line-height: 1em;
+				padding: 0 0 0.3em 0;
+				}
+				#mpcontact strong {
+					float: left;
+					width: 80px;
+					font-size: 0.9em;
+					}
+				#mpcontact span {
+					float: left;
+					width: 230px;
+					}
+					#mpcontact a {
+						text-transform: lowercase;
+						}
+					#mpcontact #address {
+						line-height: 1.1em;
+						padding-bottom: 20px;
+						}
+
+/* #letter_form
+_______________________________________________ */
+#letter_form {
+	background: #111;
+	}
+	#letter_form h1 {
+		background: url(../img/lettercornerstop.gif) no-repeat top left;
+		font: bold 2em "HelveticaNeue Condensed", Arial, Helvetica, sans-serif;
+		padding: 20px 0 0 30px;
+		}
+	#letter_form .clear {
+		margin-bottom: 0.3em;
+		}
+		#letter_form .clear strong {
+			float: left;
+			width: 125px;
+			font-size: 0.8em;
+			margin: 0 0 0 30px;
+			}
+		#letter_form .clear input,
+		#letter_form .clear select,
+		#letter_form .clear span.province,
+		#letter_form .clear textarea {
+			float: left;
+			width: 180px;
+			padding: 0.1em;
+			}
+			#letter_form .clear textarea {
+				width: 360px;
+				height: 180px;
+				}
+			#letter_form  #yourcontactinfo .clear .postalcode {
+				margin-left: 10px;
+				width: 110px;
+				}
+			#letter_form #form_postal_code {
+				text-transform: uppercase;
+				width: 5em;
+				}
+		#letter_form .preview {
+			margin-left: 150px;
+			}
+			#letter_form .preview #preview {
+				font-size: 1.1em;
+				margin: 0;
+				padding: 0.2em 0.3em;
+				font-weight: bold;
+				margin-top: 0.3em;
+				}
+	#date {
+		margin: 0;
+		line-height: 1em;
+		}
+	#letter_form .note {
+		font-size: 0.75em;
+		margin: 0;
+		padding: 0 20px 20px;
+		font-style: italic;
+		background: #111 url(../img/lettercornersbot.gif) no-repeat bottom left;
+		}
+
+/* #letter_preview
+_______________________________________________ */
+#letter_preview {
+	background: #111 url(../img/lettercornersbot.gif) no-repeat bottom left;
+	padding-bottom: 20px;
+	}
+	#final_letter {
+		background: #111 url(../img/lettercornerstop.gif) no-repeat top left;
+		padding: 20px 50px 0;
+		}
+		.address {
+			line-height: 1em;
+			margin-bottom: 1em;
+			}
+		.letterbody {
+			margin: 1em 0;
+			font-size: 1.2em;
+			line-height: 1.1em;
+			}
+	.buttons {
+		padding-left: 50px;
+		}
+		.buttons input {
+			font-size: 1.1em;
+			margin: 0;
+			padding: 0.2em 0.3em;
+			font-weight: bold;
+			margin-top: 0.3em;
+			}
+	.msg {
+		background: url(../img/lettercornerstop.gif) no-repeat top left;
+		padding: 20px 30px 0;
+		}

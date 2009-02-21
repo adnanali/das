@@ -1,0 +1,22 @@
+<% form_for @cause do |f| -%>
+  <%= f.hidden_field '_rev' unless @cause.new_record? %>
+
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :intro %>
+    <%= f.text_area :intro %>
+  </p>
+
+  <p>
+    <%= f.label :cause_type %>
+    <%= f.select(:cause_type, {"Federal" => "federal", "Provincial" => "provincial"})%>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end -%>

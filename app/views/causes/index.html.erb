@@ -1,0 +1,11 @@
+<h1>Causes</h1>
+
+<ul id="causes">
+<% @causes.rows.each do |cause| %>
+  <li>
+    <%= link_to cause.name, cause_url(cause) %> |
+    <%= link_to 'edit', edit_cause_url(cause) %>
+  </li>
+<% end %>
+</ul>
+<%= link_to 'new cause', new_cause_url %>

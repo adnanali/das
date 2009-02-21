@@ -1,0 +1,59 @@
+<% form_for @cause do |f| -%>
+  <%= f.hidden_field '_rev' unless @cause.new_record? %>
+
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :intro %>
+    <%= f.text_area :intro %>
+  </p>
+
+  <p>
+    <%= f.label :cause_type %>
+    <%= f.select(:cause_type, {"Federal" => "federal", "Provincial" => "provincial"})%>
+  </p>
+
+  <script type="text/javascript">
+    $("#cause_cause_type").change(function() {
+      if ($(this).val() == "provincial") {
+        $("#province_field").hide().slideToggle();
+      } else {
+        $("#province_field").show().slideToggle();
+        $("#cause_province").val("");
+      }
+    });
+  </script>
+
+  <p style="display: none;" id="province_field">
+    <%= f.label :province %>
+    <%= f.select(:province, [
+      ["Select a province" , ""],
+      ["Alberta" , "AB"],
+      ["British Columbia" , "BC"],
+      ["Manitoba" , "MB"],
+      ["New Brunswick" , "NB"],
+      ["New Foundland" , "NF"],
+      ["Northwest Territories" , "NT"],
+      ["Nova Scotia" , "NS"],
+      ["Ontario" , "ON"],
+      ["Prince Edward Island" , "PI"],
+      ["Quebec" , "PQ"],
+      ["Saskatchewan" , "SA"],
+      ["Yukon Territory" , "YT"],
+      ]
+      ) %>
+  </p>
+
+
+  <p>
+    <%= f.label :find_form_message %>
+    <%= f.text_area :find_form_message %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end -%>
