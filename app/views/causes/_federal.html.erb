@@ -8,19 +8,19 @@
           <%= @find_form_message %>
         </div>
     </div>
-<% end -%>
 <div id="member_results">
     <!-- ajax outputs mp's info here -->
 </div>
+<% end -%>
 
         <script type="text/javascript">
         $("#find_mp").click (function(){
-            $("#mp").html("<p class='msg'><em>Loading &hellip;</em></p>");
-            $.get("/ajax/findmp.php?postal_code=" + $("#postal_code_mp").val(), {}, function(data) {
-                $("#mp").html(data);
+            $("#member_results").html("<p class='msg'><em>Loading &hellip;</em></p>");
+            $.get("/mp/by_postal_code/" + $("#find_postal_code").val(), {}, function(data) {
+                $("#member_results").html(data);
                 $("#info").slideToggle();
 
-                if ($("#name").html() != null) {
+                /* if ($("#name").html() != null) {
                         $("#write_to").html("Write to " + $("#name").html() + " now");
                         $("#form_postal_code").html($("#postal_code_mp").val());
                         $("#form_province").html($("#mp_province").val());
@@ -34,8 +34,8 @@
                                 $("#form_province_select").show();
                                 $("#form_province").hide();
                         }
-                }
-            });
+                } */
+            }, "html");
             return false;
         });
     </script>

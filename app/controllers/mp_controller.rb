@@ -1,5 +1,3 @@
-require 'hpricot'
-require 'open-uri'
 class MpController < ApplicationController
   def by_postal_code
     @mp_info = Mp.get_mp_from_site(params[:id])
@@ -13,6 +11,11 @@ class MpController < ApplicationController
       mp.save
     end
     @mp = mp
-  render :layout => false
+
+    respond_to do |format|
+      format.html {
+        render :layout => false
+      }
+    end
   end
 end

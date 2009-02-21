@@ -119,34 +119,34 @@ _______________________________________________ */
 			margin-top: 0.5em;
 			padding-right: 20px;
 			}
-#mp {
+#member_results {
 	background: #111 url(../img/cornersbot.gif) no-repeat bottom left;
 	margin-top: 1em;
 	}
-	#mp .msg {
+	#member_results .msg {
 		background: url(../img/cornerstop.gif) no-repeat top left;
 		padding: 10px 30px;
 		}
-		#mp .msg em,
+		#member_results .msg em,
 		.loading {
 			background: url(../img/loading.gif) no-repeat center left;
 			padding-left: 30px;
 			}
-	#mp h2 {
+	#member_results h2 {
 		font: bold 2em "HelveticaNeue Condensed", Arial, Helvetica, sans-serif;
 		background: url(../img/cornerstop.gif) no-repeat top left;
 		padding: 20px 0 0 30px;
 		}
-	#mp #info  {
+	#member_results #info  {
 		padding-left: 30px;
 		}
-		#mp #mpinfo {
+		#member_results #mpinfo {
 			font-size: 0.8em;
 			}
 			#mpinfo p {
 				line-height: 1em;
 				}
-		#mp #mpcontact {
+		#member_results #mpcontact {
 			padding-top: 0.3em;
 			}
 			#mpcontact p {

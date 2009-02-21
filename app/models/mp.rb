@@ -1,3 +1,4 @@
+require 'hpricot'
 class Mp < BasicModel
   def self.get_mp_from_site(postal_code)
     postal_code = postal_code.gsub(/[^A-Za-z0-9]/, '').upcase
