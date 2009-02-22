@@ -265,3 +265,7 @@ _______________________________________________ */
 		background: url(../img/lettercornerstop.gif) no-repeat top left;
 		padding: 20px 30px 0;
 		}
+
+#info {
+  display: none;
+  }
