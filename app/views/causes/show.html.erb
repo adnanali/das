@@ -1,8 +1,99 @@
-<h1>Cause: <%= @cause.name %></h1>
-
 <div id="intro">
-<%= @intro %>
+  <%= @cause.intro %>
 </div>
 
 <%= render :partial => @cause.cause_type %>
+
+<form id="letter_form" style="display: block;">
+  <h1 id="write_to">Write to Your MP Now</h1>
+  <p id="date" class="clear">
+    <strong>Date:</strong>
+    <%= Date.today.strftime("%B %d, %Y") %>
+  </p>
+  <p id="subject" class="clear">
+    <strong>Subject:</strong>
+    <input id="form_subject" name="subject" type="text" value="<%= @cause.letter_subject %>" />
+  </p>
+  <div id="message" class="clear">
+    <strong>Message:</strong>
+    <div id="dear_mp">&nbsp;</div>
+    <strong>&nbsp;</strong>
+    <textarea id="form_content" name="form_content"><%= @cause.letter_body %></textarea>
+  </div>
+  <div id="yourcontactinfo">
+    <p class="clear">
+      <strong>Your Name</strong>
+      <input id="form_name" type="text">
+    </p>
+    <p class="clear">
+      <strong>Your Email</strong>
+      <input id="form_email" type="text">
+    </p>
+    <p class="clear">
+      <strong>Your Address</strong>
+      <input id="form_user_address" type="text">
+    </p>
+    <p class="clear">
+      <strong>Your City</strong>
+      <input id="form_city" type="text">
+    </p>
+    <p class="clear">
+      <strong>Your Province</strong>
+      <select id="form_province_select" name="form_province" style="display: none;">
+        <option value="">Select a province</option>
+        <option value="AB">Alberta</option>
+        <option value="BC">British Columbia</option>
+        <option value="MB">Manitoba</option>
+        <option value="NB">New Brunswick</option>
+        <option value="NF">New Foundland</option>
+        <option value="NT">Northwest Territories</option>
+        <option value="NS">Nova Scotia</option>
+        <option value="ON">Ontario</option>
+        <option value="PI">Prince Edward Island</option>
+        <option value="PQ">Quebec</option>
+        <option value="SA">Saskatchewan</option>
+        <option value="YT">Yukon Territory</option>
+      </select>
+      <script type="text/javascript">               $("#form_province_select").change(function() {                 $("#form_province").html($("#form_province_select").val());               });
+      </script>
+      <span id="form_province" class="province"></span>
+      <strong class="postalcode">Your Postal Code</strong>
+      <span id="form_postal_code"></span>
+    </p>
+  </div>
+  <p class="preview">
+    <input id="preview" name="preview" value="Preview Your Email" type="submit">
+  </p>
+  <div class="note"><%= @cause.letter_note %></div>
+</form>
+
+<div id="letter_preview" style="display: none;">
+  <div id="empty">
+    &nbsp;
+    <script type="text/javascript">
+      $("#preview").click (function(){
+        $("#letter_preview").html("Loading ...");
+        $.post("/letter/preview", {
+            'cause' : "<%= @cause.id %>",
+            'letter[date]' : "<%= Date.today.strftime("%B %d, %Y") %>",
+            'letter[mp][name]' : mp_info.name,
+            'letter[mp][address]' : $("#address").html(),
+            'letter[subject]' : $("#form_subject").val(),
+            'letter[content]' : $("#form_content").val(),
+            'letter[user][name]' : $("#form_name").val(),
+            'letter[user][email]' : $("#form_email").val(),
+            'letter[user][address]' : $("#form_user_address").val(),
+            'letter[user][city]' : $("#form_city").val(),
+            'letter[user][province]' : $("#form_province").html(),
+            'letter[user][postal_code]' : $("#form_postal_code").html()
+        }, function(data) {
+          $("#letter_form").toggle();
+          $("#letter_preview").html(data);
+          $("#letter_preview").toggle();
+        });
+        return false;
+      });
+    </script>
+  </div>
+</div>
 

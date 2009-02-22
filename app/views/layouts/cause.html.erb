@@ -4,10 +4,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-	<title>Stop The War</title>
+	<title><%= @cause.title %></title>
 	<link media="all" href="/stylesheets/css.css" rel="stylesheet" type="text/css" />
   <%= javascript_include_tag 'jquery', 'jquery-ui' %>
   <%= javascript_include_tag 'application' %>
+  <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
 
   <!--[if IE]>
   <style type="text/css">

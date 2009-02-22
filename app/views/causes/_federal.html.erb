@@ -1,42 +1,45 @@
 <% form_tag( {:action => "something"}, :id => "postal_form") do -%>
-    <div id="enter">
-        <h1>Contact Your MP</h1>
-        <p>Enter your postal code:</p>
-        <%= text_field_tag :find_postal_code %>
-        <%= submit_tag "Find your MP", :id => "find_mp" %>
-        <div class="sxn">
-          <%= @find_form_message %>
-        </div>
+  <div id="enter">
+    <h1>Contact Your MP</h1>
+    <p>Enter your postal code:</p>
+    <%= text_field_tag :find_postal_code %>
+    <%= submit_tag "Find your MP", :id => "find_mp" %>
+    <div class="sxn">
+      <%= @cause.find_form_message %>
     </div>
-<div id="member_results">
+  </div>
+  <div id="member_results">
     <!-- ajax outputs mp's info here -->
-</div>
+  </div>
 <% end -%>
 
-        <script type="text/javascript">
-        $("#find_mp").click (function(){
-            $("#member_results").html("<p class='msg'><em>Loading &hellip;</em></p>");
-            $.get("/mp/by_postal_code/" + $("#find_postal_code").val(), {}, function(data) {
-                $("#member_results").html(data);
-                $("#info").slideToggle();
+<script type="text/javascript">
+  $("#find_mp").click (function(){
+    $("#member_results").html("<p class='msg'><em>Loading &hellip;</em></p>");
+    $.get("/mp/by_postal_code/1.html", {postal_code : $("#find_postal_code").val()}, function(data) {
+      $("#member_results").html(data);
+      $("#info").slideToggle();
 
-                /* if ($("#name").html() != null) {
-                        $("#write_to").html("Write to " + $("#name").html() + " now");
-                        $("#form_postal_code").html($("#postal_code_mp").val());
-                        $("#form_province").html($("#mp_province").val());
-                        $("#form_city").val($("#mp_city").val());
-                        $("#letter_form").hide();
-                        $("#letter_preview").hide();
-                        $("#letter_form").slideToggle();
-                        $("#letter_form").scrollTo(1000);
+      if (mp_info != null && mp_info.name != null) {
+        $("#write_to").html("Write to " + mp_info.name + " now");
+        $("#dear_mp").html("Dear " + mp_info.name + ",");
+        $("#form_postal_code").html($("#find_postal_code").val());
+        $("#form_province").html(mp_info.province);
+        $("#form_city").val(mp_info.city);
 
-                        if ($("#mp_province").val() == "") {
-                                $("#form_province_select").show();
-                                $("#form_province").hide();
-                        }
-                } */
-            }, "html");
-            return false;
-        });
-    </script>
+        if (mp_info.province == "") {
+          $("#form_province_select").show();
+          $("#form_province").hide();
+        }
+
+        $("#letter_form").hide();
+        $("#letter_preview").hide();
+        $("#letter_form").slideToggle();
+        $("#letter_form").scrollTo(1000);
+
+      }
+    }, "html");
+    return false;
+  });
+</script>
 

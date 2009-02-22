@@ -1,0 +1,45 @@
+<script type="text/javascript">
+  $("#edit").click (function(){
+    $("#letter_preview").toggle();
+    $("#letter_form").toggle();
+
+  });
+
+  $("#send").click (function(){
+    var letter = $("#final_letter").html();
+    $("#final_letter").html("<em class=\"loading\">Sending &hellip;</em>");
+    $.post('/letter/send_letter', {
+      postal_code : $("#find_postal_code").val(),
+      riding : mp_info.riding,
+      cause : "<%= @cause %>",
+      from_email : $("#form_email").val(),
+      message : letter,
+      subject : $("#form_subject").val(),
+      letter: "<%= escape_javascript(@letter.to_json) %>"
+    }, function (data) {
+      $("#letter_preview").html(data);
+    }, "html");
+    $("#send").hide();
+    $("#edit").hide();
+
+  });
+</script>
+<div id="final_letter">
+  <p class="date"><%= @letter['date'] %></p>
+  <p class="address"><%= @letter['mp']['name'] %><br />
+  <%= @letter['mp']['address'] %></p>
+  <p><strong>Subject: <%= @letter['subject'] %></strong></p>
+  <div class="letterbody">
+    <p>Dear <%= @letter['mp']['name'] %>,</p>
+    <p><%= @letter['content'].gsub("\n", "<br />\n") %></p>
+    <p>Sincerely, <br />
+      <%= @letter['user']['name'] %><br />
+      <%= @letter['user']['address'] %><br />
+      <%= @letter['user']['city'] %>, <%= @letter['user']['province'] %><br />
+      <%= @letter['user']['postal_code'].upcase %></p>
+  </div>
+</div>
+<p class="buttons">
+  <input id="edit" name="edit" value="Edit" type="submit">
+  <input id="send" name="send" value="Send" type="submit">
+</p>

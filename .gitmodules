@@ -1,3 +1,6 @@
 [submodule "vendor/plugins/basic_model"]
 	path = vendor/plugins/basic_model
 	url = git@github.com:adnanali/basic_model.git
+[submodule "vendor/plugins/active_form"]
+	path = vendor/plugins/active_form
+	url = git://github.com/nesquena/active_form.git

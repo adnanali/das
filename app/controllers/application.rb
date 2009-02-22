@@ -17,7 +17,4 @@ class ApplicationController < ActionController::Base
     "demand"
   end
 
-  def markdown(text)
-    Markdown.new(text).to_html
-  end
 end

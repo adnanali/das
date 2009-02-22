@@ -1,26 +1,23 @@
 class CausesController < ApplicationController
   def index
-    @causes = Cause.view(database_name, "causes/all")
+    @causes = Cause.view("causes/all")
   end
 
   def show
-    @cause = Cause.find(database_name, params[:id])
-
-    @intro = markdown(Liquid::Template.parse(@cause.intro).render('cause' => @cause.attributes))
-    @find_form_message = markdown(Liquid::Template.parse(@cause.find_form_message).render('cause' => @cause.attributes))
-
+    @cause = Cause.processed_find(params[:id])
     render :layout => 'cause'
   end
 
   def new
-    @cause = Cause.new(database_name)
+    @cause = Cause.new()
   end
 
   def create
-    cause = Cause.new(database_name)
+    cause = Cause.new()
 
     # use the name as the unique id
     params[:cause]['_id'] = params[:cause][:name]
+
 
     respond_to do |format|
       if cause.save(params[:cause])
@@ -30,19 +27,23 @@ class CausesController < ApplicationController
   end
 
   def edit
-    @cause = Cause.find(database_name, params[:id])
+    @cause = Cause.find(params[:id])
   end
 
   def update
-    @cause = Cause.find(database_name, params[:id])
+    @cause = Cause.find(params[:id])
 
     respond_to do |format|
-      if @cause.save(params[:cause])
+      if @cause.update_attributes(params[:cause])
+        RAILS_DEFAULT_LOGGER.debug "#{params[:cause].to_yaml}"
         format.html { redirect_to cause_url(@cause) }
-        end
+      else
+        format.html { render :action => :edit }
+      end
     end
   end
 
   def destroy
   end
+
 end

@@ -1,5 +1,9 @@
 require 'hpricot'
 class Mp < BasicModel
+  database_name :demand
+
+  validates_presence_of :name
+
   def self.get_mp_from_site(postal_code)
     postal_code = postal_code.gsub(/[^A-Za-z0-9]/, '').upcase
 
